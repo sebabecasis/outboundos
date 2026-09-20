@@ -1,0 +1,15 @@
+{
+  "id": "sample-ai-ops",
+  "objective": "Identify companies likely to value a governed agent workflow",
+  "audience": "Operations consultancies building repeatable AI-enabled services",
+  "signals": [
+    "workflow automation",
+    "human review",
+    "repeatable process"
+  ],
+  "exclusion_signals": [
+    "consumer mobile app"
+  ],
+  "research_input": "companies.json"
+}
+

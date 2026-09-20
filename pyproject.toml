@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "outboundos"
+version = "0.1.0"
+description = "A human-governed template for repeatable outbound workflows"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+outboundos = "outboundos.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+

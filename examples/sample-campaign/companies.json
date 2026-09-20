@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Northstar Operations",
+    "domain": "northstar.example",
+    "text": "We design workflow automation for specialist teams, with human review before any customer-facing action."
+  },
+  {
+    "name": "Repeat Works",
+    "domain": "repeat.example",
+    "text": "Our consultancy turns fragile experiments into a repeatable process with clear ownership and controls."
+  },
+  {
+    "name": "Pocket Spark",
+    "domain": "pocketspark.example",
+    "text": "A consumer mobile app for sharing AI-generated stickers with friends."
+  },
+  {
+    "name": "Generic Advisory",
+    "domain": "generic.example",
+    "text": "Independent advice for growing businesses."
+  }
+]
+
