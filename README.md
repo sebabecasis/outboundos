@@ -17,8 +17,6 @@ campaign brief
 → run log
 ```
 
-See [`MIGRATION.md`](MIGRATION.md) for the source boundary and extraction plan.
-
 ## Run the example
 
 The package has no runtime dependencies outside Python 3.11+.
