@@ -1,5 +1,7 @@
 # OutboundOS
 
+For agent-assisted operation, start with [AGENTS.md](AGENTS.md). Claude Code loads the same guide through [CLAUDE.md](CLAUDE.md).
+
 Clean-room template extracted from a working outbound operating system.
 
 ## Repository status
