@@ -29,6 +29,14 @@ def parser() -> argparse.ArgumentParser:
 
     run = commands.add_parser("run-due", help="Run every due scheduled task")
     run.add_argument("--now", help="ISO-8601 cutoff; defaults to now")
+    run.add_argument("--live-research", action="store_true", help="Use database, Firecrawl, AI scoring and Prospeo")
+    run.add_argument("--execute", action="store_true", help="Authorize paid research for due tasks")
+
+    upload = commands.add_parser("upload", help="Preview or execute an approved Instantly export")
+    upload.add_argument("--proposal", required=True)
+    upload.add_argument("--campaign", required=True)
+    upload.add_argument("--expected-org", required=True)
+    upload.add_argument("--execute", action="store_true")
 
     review = commands.add_parser("review", help="Approve or reject a proposal")
     review.add_argument("--proposal", required=True)
@@ -51,6 +59,12 @@ def main(argv: list[str] | None = None) -> int:
         task = workflow.schedule(_brief(args.brief), scheduled_for=parse_time(args.at) if args.at else None)
         print(json.dumps(task.to_dict(), indent=2))
     elif args.command == "run-due":
+        if args.live_research:
+            from .integrations import live_research
+            if not args.execute:
+                print(json.dumps({"dry_run": True, "tasks": [t.to_dict() for t in workflow.store.list_tasks() if t.status == "scheduled"]}, indent=2))
+                return 0
+            workflow.researcher = lambda brief: live_research(brief, execute=True, cache=workflow.store.root / "research-cache")
         proposals = workflow.run_due(now=parse_time(args.now) if args.now else None)
         print(json.dumps([proposal.to_dict() for proposal in proposals], indent=2))
     elif args.command == "review":
@@ -63,6 +77,10 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps(review.to_dict(), indent=2))
     elif args.command == "materialize":
         print(workflow.materialize(args.proposal))
+    elif args.command == "upload":
+        from .integrations import upload_approved
+        print(json.dumps(upload_approved(workflow, args.proposal, campaign_id=args.campaign,
+            expected_org=args.expected_org, execute=args.execute), indent=2))
     elif args.command == "status":
         print(
             json.dumps(
@@ -79,4 +97,3 @@ def main(argv: list[str] | None = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

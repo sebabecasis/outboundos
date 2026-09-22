@@ -6,9 +6,9 @@ Clean-room template extracted from a working outbound operating system.
 
 ## Repository status
 
-The first working slice is implemented. No Disciple data, credentials or production integrations belong in this repository.
+The workflow and configurable live provider adapters are implemented. No customer data, credentials or private account configuration belong in this repository. See [live workflow](docs/live-workflow.md) for read-only company database access, Firecrawl scraping, AI scoring, Prospeo enrichment and reviewed Instantly export.
 
-The first working slice will demonstrate:
+The workflow demonstrates:
 
 ```text
 campaign brief

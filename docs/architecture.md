@@ -37,5 +37,4 @@ scheduled Task ── run-due ──► running Task
 
 ## Replacement boundary
 
-`research.build_candidate_payload` is the example task implementation. It is deterministic and fixture-backed. A production adapter can replace it with scraping, enrichment or agent research without changing the scheduling, review, state or audit contracts.
-
+`research.build_candidate_payload` is the example task implementation. It is deterministic and fixture-backed. integrations.live_research implements the alternate database → scrape → AI score → Prospeo path without changing those review contracts. integrations.upload_approved performs a separately authorized Instantly export after materialization, with destination verification, deduplication and a durable receipt/uncertain-outcome gate. See live-workflow.md.
